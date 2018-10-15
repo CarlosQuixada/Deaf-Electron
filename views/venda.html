@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <title>Help</title>
+</head>
+<body>
+  <div class="navbar-fixed">
+    <nav>
+        <div class="nav-wrapper teal darken-1">
+          <a href="#" class="brand-logo center ">Deaf</a>
+          <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="produto.html">Produto</a></li>
+            <li><a href="cliente.html">Cliente</a></li>
+            <li class="active"><a href="venda.html">Venda</a></li>
+          </ul>
+        </div>
+      </nav>
+  </div>
+      <h2 class="center">Cadastrar Venda</h2>
+      <div class="divider"></div>
+      <br>
+      <div class="container">
+          <div class="row">
+            <label>Cliente</label>
+            <select v-model="sale.cliente" class="browser-default">
+                <option value="" disabled selected>Escolha um Cliente</option>
+                <option value="{{c.nome}}" v-for="c in clientes">{{c.nome}}</option>
+            </select>
+          </div>
+      </div>
+        <div class="col s6">
+        <table class="responsive-table highlight">
+            <thead>
+              <tr>
+                  <th>Produto</th>
+                  <th>Quantidade</th>
+                  <th>Preço</th>
+                  <th>Total</th>
+                  <th></th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr v-for="venda in vendas" v-if="venda != sale_update">
+                <td>{{venda.produto}}</td>
+                <td>{{venda.qtd}}</td>
+                <td>{{venda.preco}}</td>
+                <td>{{venda.qtd*venda.preco}}</td>
+                <td><button @click="editSale(venda)" class="btn btn-primary">Editar</button></td>
+              </tr>
+              <tr v-if="mode == 'edicao'">
+                  <td><input disabled type="text" class="form-control" v-model="sale.produto"/></td>  
+                  <td><input type="text" class="form-control" v-model="sale.qtd"/></td>
+                  <td><input disabled type="text" class="form-control" v-model="sale.preco"/></td>
+                  <td></td>
+                  <td><button @click="saleStroreOrUpdate()" class="btn waves-effect waves-light btn-small">Salvar</button></td>
+              </tr>
+              <tr v-if="mode != 'edicao'">
+                <td>
+                    <select v-model="sale.produto" class="browser-default">
+                        <option value="" disabled selected>Escolha um Produto</option>
+                        <option value="{{p.nome}}" v-for="p in produtos">{{p.nome}}</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" v-model="sale.qtd" placeholder="Quantidade"/>
+                </td>
+                <td>
+                    <input disabled type="text"  v-model="sale.preco" placeholder="Preço"/>
+                </td>
+                <td v-if="sale.qtd*sale.preco > 0">{{sale.qtd*sale.preco}}</td>
+                <td><button @click="saleStroreOrUpdate()" class="btn waves-effect waves-light btn-small">Salvar</button></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+    <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
+    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('select');
+            var instances = M.FormSelect.init(elems, options);
+        });
+    </script>
+    <script>
+      require('../controller/venda.js');
+    </script>
+</body>
+</html>

@@ -1,71 +1,100 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Help</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <title>Help</title>
 </head>
+
 <body>
   <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper teal darken-1">
-          <a href="#" class="brand-logo center ">Deaf</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li class="active"><a href="produto.html">Produto</a></li>
-            <li><a href="cliente.html">Cliente</a></li>
-            <li><a href="venda.html">Venda</a></li>
-            <li><a href="adm.html">Administração</a></li>
-          </ul>
-        </div>
-      </nav>
+      <div class="nav-wrapper teal darken-1">
+        <a href="#" class="brand-logo center ">Deaf</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li class="active"><a href="produto.html">Produto</a></li>
+          <li><a href="cliente.html">Cliente</a></li>
+          <li><a href="venda.html">Venda</a></li>
+          <li><a href="adm.html">Administração</a></li>
+        </ul>
+      </div>
+    </nav>
   </div>
-      <h2 class="center">Cadastrar Produto</h2>
+  <h2 class="center">Cadastrar Produto</h2>
+  <div class="divider"></div>
+  <br>
+  <!-- Tabela -->
+  <div class="col s6">
+    <table class="responsive-table highlight">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="produto in produtos" v-if="produto != produto_update">
+          <td>{{produto.nome}}</td>
+          <td>{{produto.qtd}}</td>
+          <td>{{produto.preco}}</td>
+          <td><a @click="editProduct(produto)" class="waves-effect waves-light btn modal-trigger" href="#modal1">Editar</a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Botão Floating -->
+  <div class="fixed-action-btn">
+    <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal1">
+      <i class="large material-icons">add</i>
+    </a>
+  </div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4 v-if="mode != 'edicao'" class="center">Cadastrar Produto</h4>
+      <h4 v-if="mode == 'edicao'" class="center">Editar Produto</h4>
       <div class="divider"></div>
       <br>
-        <div class="col s6">
-        <table class="responsive-table highlight">
-            <thead>
-              <tr>
-                  <th>Nome</th>
-                  <th>Quantidade</th>
-                  <th>Preço</th>
-                  <th></th>
-              </tr>
-            </thead>
-    
-            <tbody>
-              <tr v-for="produto in produtos" v-if="produto != produto_update">
-                <td>{{produto.nome}}</td>
-                <td>{{produto.qtd}}</td>
-                <td>{{produto.preco}}</td>
-                <td><button @click="editProduct(produto)" class="btn btn-primary">Editar</button></td>
-              </tr>
-              <tr v-if="mode == 'edicao'">
-                  <td><input type="text" class="form-control" v-model="product.nome" placeholder="Nome"/></td>
-                  <td><input type="text" class="form-control" v-model="product.qtd" placeholder="Nome"/></td>
-                  <td><input type="text" class="form-control" v-model="product.preco" placeholder="Nome"/></td>
-                  <td><button @click="productStroreOrUpdate()" class="btn waves-effect waves-light btn-small">Salvar</button></td>
-              </tr>
-              <tr v-if="mode != 'edicao'">
-                <td>
-                    <input type="text" class="form-control" v-model="product.nome" placeholder="Nome"/>
-                </td>
-                <td>
-                    <input type="text" class="form-control" v-model="product.qtd" placeholder="Quantidade"/>
-                </td>
-                <td>
-                    <input type="text" class="form-control" v-model="product.preco" placeholder="Preço"/>
-                </td>
-                <td><button @click="productStroreOrUpdate()" class="btn waves-effect waves-light btn-small">Salvar</button></td>
-              </tr>
-            </tbody>
-          </table>
-          </div>
-    <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
-    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script>
-      require('../controller/produto.js');
-    </script>
+      <div class="row">
+        <div class="col s9">
+          <label for="nome">Nome</label>
+          <input id="nome" type="text" class="form-control" v-model="product.nome" placeholder="Nome" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s9">
+          <label for="qtd">Quantidade</label>
+          <input id="qtd" type="text" class="form-control" v-model="product.qtd" placeholder="Quantidade" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s9">
+          <label for="preco">Preço</label>
+          <input id="preco" type="text" class="form-control" v-model="product.preco" placeholder="Preço" />
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a @click="productStroreOrUpdate()" class="modal-close btn waves-effect waves-light btn-small">Salvar</a>
+      <a @click="cancelar()" class="modal-close btn waves-effect waves-light btn-small red accent-4">Cancelar</a>
+    </div>
+  </div>
+
+  <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
+  <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script src="../js/botaoFloating.js"></script>
+  <script src="../js/abrirModal.js"></script>
+  <script>
+    require('../controller/produto.js');
+  </script>
 </body>
+
 </html>

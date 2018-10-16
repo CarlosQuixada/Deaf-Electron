@@ -1,55 +1,30 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <title>Help</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <title>Help</title>
 </head>
+
 <body>
   <div class="navbar-fixed">
     <nav>
-        <div class="nav-wrapper teal darken-1">
-          <a href="#" class="brand-logo center ">Deaf</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="produto.html">Produto</a></li>
-            <li><a href="cliente.html">Cliente</a></li>
-            <li><a href="venda.html">Venda</a></li>
-            <li><a href="adm.html">Administração</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-    <h1>PAGINA INICIAL</h1>
-    <div class="chart-container" style="position: relative; height:100vh; width:50vw">
-        <canvas id="myChart"></canvas>
-    </div>
-    <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
-    <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script src="../node_modules/chart.js/dist/Chart.min.js"></script>
-    <script>
-        new Chart(document.getElementById("myChart"),{
-          "type":"bar",
-          "data":{
-            "labels":["January","February","March","April","May","June","July"],
-            "datasets":[
-              {
-              "label":"Número de Vendas",
-              "data":[65,59,80,81,56,55,40],
-              "fill":false,
-              "borderColor":"rgb(255, 0, 0)",
-              "backgroundColor":"rgb(255, 0, 0)",
-              "lineTension":0.1},
-              {
-              "label":"Vendas Pagas",
-              "data":[65,-59,-80,-81,-56,-55,-40],
-              "fill":false,
-              "borderColor":"rgb(75, 192, 192)",
-              "backgroundColor":"rgb(75, 192, 192)",
-              "lineTension":0.1
-            },
-            ]},
-            "options":{}});
-    </script>
-    </body>
+      <div class="nav-wrapper teal darken-1">
+        <a href="#" class="brand-logo center ">Deaf</a>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+          <li><a href="produto.html">Produto</a></li>
+          <li><a href="cliente.html">Cliente</a></li>
+          <li><a href="venda.html">Venda</a></li>
+          <li><a href="adm.html">Administração</a></li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <h1>PAGINA INICIAL</h1>
+  
+  <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
+  <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+</body>
 </html>

@@ -61,6 +61,11 @@ new Vue({
         this.sale_update ='';
       }
       db.save();
+    },
+    cancelar: function () {
+      this.mode = '';
+      this.sale={cliente:this.sale.cliente,produto:'',preco:0,qtd:1}
+      this.sale_update = '';
     }
   }
 });

@@ -40,7 +40,10 @@
         <tr v-for="cliente in clientes" v-if="cliente != cliente_update">
           <td>{{cliente.nome}}</td>
           <td>{{cliente.telefone}}</td>
-          <td><a @click="editClient(cliente)" class="waves-effect waves-light btn modal-trigger" href="#modal1">Editar</a></td>
+          <td>
+            <a @click="editClient(cliente)" class="waves-effect waves-light btn modal-trigger" href="#modal1">Editar</a>
+            <a @click="removeClient(cliente)" class="waves-effect waves-light btn btn-primary">Excluir</a>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -35,37 +35,49 @@
             </select>
         </div>
     </div>
-    <div class="col s6">
-        <table class="responsive-table highlight">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço</th>
-                    <th>Total</th>
-                    <th></th>
-                </tr>
-            </thead>
+    <div v-if="sale.cliente != ''">
+        <div class="col s6">
+            <table class="responsive-table highlight">
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Quantidade</th>
+                        <th>Preço</th>
+                        <th>Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-            <tbody>
-                <tr v-for="venda in vendas" v-if="venda != sale_update">
-                    <td>{{venda.produto}}</td>
-                    <td>{{venda.qtd}}</td>
-                    <td>{{venda.preco}}</td>
-                    <td>{{venda.qtd*venda.preco}}</td>
-                    <td><a @click="editSale(venda)" class="waves-effect waves-light btn modal-trigger btn btn-primary" href="#modal1">Editar</a></td>
-                </tr>
-            </tbody>
-        </table>
+                <tbody>
+                    <tr v-for="venda in vendas" v-if="venda != sale_update">
+                        <td>{{venda.produto}}</td>
+                        <td>{{venda.qtd}}</td>
+                        <td>R$ {{venda.preco}}</td>
+                        <td>R$ {{venda.qtd*venda.preco}}</td>
+                        <td>
+                            <a @click="editSale(venda)" class="waves-effect waves-light btn modal-trigger btn btn-primary"
+                                href="#modal1">Editar</a>
+                            <a @click="saleRemove(venda)" class="waves-effect waves-light btn btn-primary">Excluir</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Subtotal: R$</td>
+                        <td><a @click="finalizarSale()" class="waves-effect waves-light btn modal-trigger btn btn-primary light-blue darken-4">Finalizar Compra</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Botão Floating -->
+        <div class="fixed-action-btn">
+            <a class="btn tooltipped waves-effect waves-light btn modal-trigger btn-floating btn-large red"
+                data-position="top" data-tooltip="I am a tooltip" href="#modal1">
+                <i class="large material-icons">add</i>
+            </a>
+        </div>
     </div>
-
-    <!-- Botão Floating -->
-    <div class="fixed-action-btn">
-        <a class="waves-effect waves-light btn modal-trigger btn-floating btn-large red" href="#modal1">
-            <i class="large material-icons">add</i>
-        </a>
-    </div>
-
     <!-- Modal Structure -->
     <div id="modal1" class="modal modal-fixed-footer">
         <div class="modal-content">
@@ -103,7 +115,6 @@
             <a @click="cancelar()" class="modal-close btn waves-effect waves-light btn-small red accent-4">Cancelar</a>
         </div>
     </div>
-
     <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
     <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="../js/botaoFloating.js"></script>
@@ -115,6 +126,7 @@
             var instances = M.FormSelect.init(elems, options);
         });
     </script>
+
     <script>
         require('../controller/venda.js');
     </script>

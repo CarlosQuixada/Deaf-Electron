@@ -53,6 +53,10 @@ new Vue({
       }
       db.save();
     },
+    removeClient:function(client){
+      clientes.remove(client)
+      db.save();
+    },
     cancelar: function () {
       this.mode = '';
       this.client = { nome: '', telefone: '' };

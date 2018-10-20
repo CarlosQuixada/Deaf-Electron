@@ -55,6 +55,10 @@ new Vue({
       }
       db.save();
     },
+    removeProduct:function(product){
+      produtos.remove(product)
+      db.save();
+    },
     cancelar: function () {
       this.mode = '';
       this.product = { nome: '', qtd: '', preco: '' };

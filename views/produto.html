@@ -43,7 +43,10 @@
           <td>{{produto.nome}}</td>
           <td>{{produto.qtd}}</td>
           <td>{{produto.preco}}</td>
-          <td><a @click="editProduct(produto)" class="waves-effect waves-light btn modal-trigger" href="#modal1">Editar</a></td>
+          <td>
+            <a @click="editProduct(produto)" class="waves-effect waves-light btn modal-trigger" href="#modal1">Editar</a>
+            <a @click="removeProduct(produto)" class="waves-effect waves-light btn btn-primary">Excluir</a>
+          </td>
         </tr>
       </tbody>
     </table>

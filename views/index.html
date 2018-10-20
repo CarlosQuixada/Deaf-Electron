@@ -23,8 +23,18 @@
     </nav>
   </div>
   <h1>PAGINA INICIAL</h1>
-  
+  <!-- data-position can be : bottom, top, left, or right -->
+  <!-- data-tooltip defines the tooltip text -->
+  <a class="btn tooltipped" data-position="top" data-tooltip="I am a tooltip">Hover me!</a>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.querySelectorAll('.tooltipped');
+      var options = {};
+      var instances = M.Tooltip.init(elems, options);
+    });
+  </script>
   <script src="../node_modules/jquery/dist/jquery.slim.js"></script>
   <script src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
 </body>
+
 </html>
